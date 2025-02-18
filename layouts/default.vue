@@ -3,21 +3,19 @@
 </script>
 
 <template>
-  <div class="container">
-    <div class="parent">
-      <header class="header">
-        <NuxtLink to="/" class="header__title">Nuxt Minimal Blog</NuxtLink>
-      </header>
-      <!--      <div class="left-side section blue">Left Sidebar</div>-->
-      <main>
-        <slot/>
-      </main>
-      <!--      <div class="right-side section yellow">Right Sidebar</div>-->
-      <footer class="footer">
-        <p>&copy; {{ new Date().getFullYear() }}</p>
-        <NuxtLink class="footer__title" to="/">Nuxt Minimal Blog</NuxtLink>
-      </footer>
-    </div>
+  <div class="parent">
+    <header class="header">
+      <NuxtLink to="/" class="header__title">Nuxt Minimal Blog</NuxtLink>
+    </header>
+    <!--      <div class="left-side section">Left Sidebar</div>-->
+    <main>
+      <slot/>
+    </main>
+    <!--      <div class="right-side section">Right Sidebar</div>-->
+    <footer class="footer">
+      <p>&copy; {{ new Date().getFullYear() }}</p>
+      <NuxtLink class="footer__title" to="/">Nuxt Minimal Blog</NuxtLink>
+    </footer>
   </div>
 </template>
 
@@ -51,7 +49,7 @@
     }
 
     & {
-      padding: 1rem;
+      padding: 10px;
     }
   }
 }
@@ -62,15 +60,12 @@
 
 main {
   grid-column: 2 / 3;
+  max-width: var(--max-display-width);
+  margin: 0 auto;
+  padding: 0 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  > * {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-  }
 }
 
 .right-side {
@@ -79,14 +74,11 @@ main {
 
 .footer {
   grid-column: 1 / 4;
-  padding: 1rem;
-  background-color: var(--backgroud-paper);
-  border-top: 1px solid #ccc;
+  padding: 2rem;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
 
   &__title {
     font-size: 1.2rem;

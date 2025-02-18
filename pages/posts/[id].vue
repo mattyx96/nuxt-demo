@@ -1,5 +1,6 @@
 <script setup lang="ts" async>
 import type {Post} from "~/types/post";
+import {gsap} from "gsap";
 
 const route = useRoute()
 const post: Post | null = await useGetPost(route.params.id + '')
@@ -18,13 +19,22 @@ definePageMeta({
   }
 })
 
+onMounted(() => {
+  gsap.from('.post', {
+    scrollTrigger: '.post',
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    stagger: 0.3,
+  })
+})
 </script>
 
 
 <template>
+  <NuxtLink to="/" class="back-arrow">← Back</NuxtLink>
   <div v-if="post" class="post">
     <div class="post__header">
-      <NuxtLink to="/" class="post__back-arrow">←</NuxtLink>
       <h1 class="post__title">{{ post.title }}</h1>
     </div>
     <div class="post__content">
@@ -61,9 +71,6 @@ definePageMeta({
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
 
   &__header {
     display: flex;
@@ -71,16 +78,6 @@ definePageMeta({
     align-items: center;
     gap: 1rem;
     padding-bottom: 20px;
-  }
-
-  &__back-arrow {
-    font-size: 1.5rem;
-    text-decoration: none;
-    color: #333;
-  }
-
-  &__back-arrow:hover {
-    text-decoration: underline;
   }
 
   &__title {
@@ -112,17 +109,22 @@ definePageMeta({
   }
 }
 
-@media (max-width: 768px) {
-  .post {
-    padding: 10px;
-  }
-
+@media (max-width: 778px) {
   .post__title {
     font-size: 1.5rem;
   }
 
   .post__content {
     padding: 10px;
+  }
+}
+
+.back-arrow {
+  text-decoration: none;
+  color: #333;
+
+  &__back-arrow:hover {
+    text-decoration: underline;
   }
 }
 </style>

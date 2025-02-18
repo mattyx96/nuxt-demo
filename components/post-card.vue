@@ -4,7 +4,7 @@ import type {Post} from "~/types/post";
 withDefaults(defineProps<{ big?: boolean; postData?: Post; href?: string }>(), {
   big: false,
   postData: {
-    id: 1,
+    id: "1",
     image: 'https://picsum.photos/800/400',
     title: 'Sample Postcard Title',
     description: 'This is a sample postcard description with some text about the post.',
@@ -20,19 +20,21 @@ withDefaults(defineProps<{ big?: boolean; postData?: Post; href?: string }>(), {
 </script>
 
 <template>
-  <NuxtLink :to="href" class="postcard" :class="big ? 'postcard--big' : ''">
-    <div class="postcard__header">
-      <nuxtImg :src="postData.image" alt="Postcard image" class="postcard__image"/>
-    </div>
-    <div class="postcard__content">
-      <h2 class="postcard__title">{{ postData.title }}</h2>
-      <div class="postcard__body">
-        <p class="postcard__description">{{ postData.description }}</p>
-        <div class="postcard__author-info">
-          <nuxtImg :src="postData.author.avatar" alt="Author avatar" width="40" height="40" class="postcard__avatar"/>
-          <div class="postcard__author-details">
-            <span class="postcard__author-name">{{ postData.author.name }}</span>
-            <span class="postcard__post-date">{{ postData.createdAt }}</span>
+  <NuxtLink :to="href" class="link">
+    <div class="postcard" :class="big ? 'postcard--big' : ''">
+      <div class="postcard__header">
+        <nuxtImg :src="postData.image" alt="Postcard image" class="postcard__image"/>
+      </div>
+      <div class="postcard__content">
+        <h2 class="postcard__title">{{ postData.title }}</h2>
+        <div class="postcard__body">
+          <p class="postcard__description">{{ postData.description }}</p>
+          <div class="postcard__author-info">
+            <nuxtImg :src="postData.author.avatar" alt="Author avatar" width="40" height="40" class="postcard__avatar"/>
+            <div class="postcard__author-details">
+              <span class="postcard__author-name">{{ postData.author.name }}</span>
+              <span class="postcard__post-date">{{ postData.createdAt }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -41,12 +43,32 @@ withDefaults(defineProps<{ big?: boolean; postData?: Post; href?: string }>(), {
 </template>
 
 <style scoped lang="scss">
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .postcard {
+  border-radius: 8px;
+  background-color: var(--backgroud-paper);
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--content-font), sans-serif;
+
   &__header {
     position: relative;
     width: 100%;
     height: 200px;
     overflow: hidden;
+  }
+
+  &__body {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   &__image {
@@ -57,6 +79,9 @@ withDefaults(defineProps<{ big?: boolean; postData?: Post; href?: string }>(), {
 
   &__content {
     padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
 
   &__title {
@@ -104,6 +129,7 @@ withDefaults(defineProps<{ big?: boolean; postData?: Post; href?: string }>(), {
   }
 
   &--big {
+    max-height: 100%;
     width: 100%;
     max-width: 100%;
     grid-column: span 2;
@@ -120,25 +146,20 @@ withDefaults(defineProps<{ big?: boolean; postData?: Post; href?: string }>(), {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
+      padding: 1.7rem;
     }
 
     & .postcard__body {
-      margin-block-start: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
     }
 
     & .postcard__title {
       font-size: 3rem;
+      margin-block-start: 0;
+      margin-block-end: 0;
     }
   }
-
-  text-decoration: none;
-  color: inherit;
-  width: 100%;
-  max-width: 400px;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: var(--backgroud-paper);
-  margin: 20px auto;
-  font-family: var(--content-font), sans-serif;
 }
 </style>

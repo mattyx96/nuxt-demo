@@ -15,11 +15,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <NuxtLayout name="blog-grid">
-    <PostCard v-for="(post, index) in posts" :key="post.id" :href="`/posts/${post.id}`" :postData="post" :big="!index"/>
+  <PostCard v-if="posts[0]" :href="`/posts/${posts[0].id}`" :postData="posts[0]" big/>
+  <NuxtLayout name="blog-grid" class="posts-container">
+    <PostCard v-for="(post, index) in posts.slice(1)" :key="post.id" :href="`/posts/${post.id}`" :postData="post"/>
   </NuxtLayout>
 </template>
 
 <style scoped>
-
+.posts-container {
+  margin-block: 8rem !important;
+}
 </style>
