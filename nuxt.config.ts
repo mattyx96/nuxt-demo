@@ -3,9 +3,12 @@
 export default defineNuxtConfig({
     compatibilityDate: '2025-02-16',
     devtools: {enabled: false},
-    /*app: {
-        pageTransition: {name: 'page', mode: 'out-in'}
-    },*/
+    app: {
+        head: {
+            charset: 'utf-8',
+            viewport: 'width=device-width, initial-scale=1',
+        },
+    },
     modules: [
         '@nuxt/image',
         '@nuxtjs/google-fonts'

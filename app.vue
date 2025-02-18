@@ -1,3 +1,12 @@
+<script setup lang="ts">
+useSeoMeta({
+  title: 'Nuxt Minimal Blog',
+  ogTitle: 'Nuxt Minimal Blog',
+  description: 'This is a simple blog built with Nuxt.',
+  ogDescription: 'This is a simple blog built with Nuxt.',
+})
+</script>
+
 <template>
   <div>
     <NuxtRouteAnnouncer/>
