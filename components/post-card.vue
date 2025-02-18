@@ -23,14 +23,14 @@ withDefaults(defineProps<{ big?: boolean; postData?: Post; href?: string }>(), {
   <NuxtLink :to="href" class="link">
     <div class="postcard" :class="big ? 'postcard--big' : ''">
       <div class="postcard__header">
-        <nuxtImg :src="postData.image" alt="Postcard image" class="postcard__image"/>
+        <img :src="postData.image" alt="Postcard image" class="postcard__image"/>
       </div>
       <div class="postcard__content">
         <h2 class="postcard__title">{{ postData.title }}</h2>
         <div class="postcard__body">
           <p class="postcard__description">{{ postData.description }}</p>
           <div class="postcard__author-info">
-            <nuxtImg :src="postData.author.avatar" alt="Author avatar" width="40" height="40" class="postcard__avatar"/>
+            <img :src="postData.author.avatar" alt="Author avatar" width="40" height="40" class="postcard__avatar"/>
             <div class="postcard__author-details">
               <span class="postcard__author-name">{{ postData.author.name }}</span>
               <span class="postcard__post-date">{{ postData.createdAt }}</span>
