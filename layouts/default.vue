@@ -6,6 +6,7 @@
   <div class="parent">
     <header class="header">
       <NuxtLink to="/" class="header__title">Nuxt Minimal Blog</NuxtLink>
+      <a href="https://github.com/mattyx96/nuxt-demo">Github</a>
     </header>
     <!--      <div class="left-side section">Left Sidebar</div>-->
     <main>
@@ -15,6 +16,7 @@
     <footer class="footer">
       <p>&copy; {{ new Date().getFullYear() }}</p>
       <NuxtLink class="footer__title" to="/">Nuxt Minimal Blog</NuxtLink>
+      <a href="https://github.com/mattyx96/nuxt-demo">Github</a>
     </footer>
   </div>
 </template>
@@ -30,6 +32,9 @@
 .header {
   padding: 2rem;
   grid-column: 1 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   &__title {
     font-size: 2rem;
